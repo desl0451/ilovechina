@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.ilovechina.dao.user.UserMapper">
+	<select id="getLoginUser" resultType="User">
+		select
+		u.id,u.userCode,u.userName,u.userPassword,u.gender,u.birthday,u.phone,u.address,u.userRole,u.createdBy,u.creationDate
+		from
+		smbms_user u
+		<trim prefix="where" prefixOverrides="and | or">
+			<if test="userCode != null">
+				and u.userCode = #{userCode}
+			</if>
+		</trim>
+	</select>
+
+	<!-- 添加 -->
+	<insert id="add" parameterType="User">
+		INSERT INTO smbms.smbms_user (userCode, userName, userPassword, gender,
+		birthday, phone, address, userRole, createdBy, creationDate, modifyBy,
+		modifyDate)VALUES
+		( #{userCode},#{userName},#{userPassword}, #{gender}, #{birthday},
+		#{phone}, #{address}, #{userRole}, #{createdBy}, #{creationDate},
+		#{modifyBy}, #{modifyDate});
+
+	</insert>
+</mapper>
