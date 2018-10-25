@@ -25,6 +25,9 @@ public class SysInterceptor extends HandlerInterceptorAdapter {
 			response.sendRedirect(request.getContextPath() + "/statics/common/404.jsp");
 			return false;
 		}
+
+		logger.debug("---------------------------登录时加载网站信息-------------------------------");
+		
 		return true;
 	}
 }
